@@ -37,6 +37,7 @@ export interface SocialLinks {
   linkedin: string;
   github: string;
   location: string;
+  web3FormsAccessKey?: string;
 }
 
 export const portfolioData = {
@@ -203,6 +204,7 @@ export const portfolioData = {
     email: "amishausanga23@gmail.com",
     linkedin: "https://linkedin.com/in/jagodage-amisha-usanga-a64609345",
     github: "https://github.com/amishausanga2002",
-    location: "United Kingdom"
+    location: "United Kingdom",
+    web3FormsAccessKey: "a1f106d7-966c-4703-bfb1-5c4cfffd142d"
   } as SocialLinks
 };

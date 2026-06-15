@@ -62,6 +62,7 @@ export const Contact: React.FC = () => {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateForm = (): boolean => {
     const tempErrors: FormErrors = {};
@@ -110,43 +111,88 @@ export const Contact: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    // Trigger subtle, professional confetti burst
-    confetti({
-      particleCount: 40,
-      spread: 50,
-      colors: ['#00F5D4', '#38BDF8'],
-      origin: { y: 0.8 },
-      disableForReducedMotion: true
-    });
+    const accessKey = socialLinks.web3FormsAccessKey;
 
-    // Construct mailto link
-    const emailBody = `Hi Amisha,\n\n${formData.message}\n\nBest regards,\n${formData.name}\n${formData.email}`;
-    const mailtoUrl = `mailto:${socialLinks.email}?subject=${encodeURIComponent(
-      formData.subject
-    )}&body=${encodeURIComponent(emailBody)}`;
-
-    // Open mail client
-    window.location.href = mailtoUrl;
-
-    // Set feedback status
-    setStatus('Your email client is opening now.');
-
-    // Clear form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-    });
-
-    // Remove feedback text after some time
-    setTimeout(() => {
+    if (accessKey && accessKey !== 'YOUR_ACCESS_KEY_HERE') {
+      setIsSubmitting(true);
       setStatus(null);
-    }, 6000);
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            access_key: accessKey,
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Trigger subtle, professional confetti burst
+          confetti({
+            particleCount: 40,
+            spread: 50,
+            colors: ['#FFFFFF', '#B5B5B5'],
+            origin: { y: 0.8 },
+            disableForReducedMotion: true
+          });
+
+          setStatus('Thank you! Your message has been sent directly.');
+          setFormData({
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+          });
+        } else {
+          setStatus(data.message || 'Something went wrong. Please try again.');
+        }
+      } catch (error) {
+        console.error('Email submission error:', error);
+        setStatus('Failed to send message. Please copy-paste email directly.');
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      // Fallback: mailto link
+      confetti({
+        particleCount: 40,
+        spread: 50,
+        colors: ['#FFFFFF', '#B5B5B5'],
+        origin: { y: 0.8 },
+        disableForReducedMotion: true
+      });
+
+      const emailBody = `Hi Amisha,\n\n${formData.message}\n\nBest regards,\n${formData.name}\n${formData.email}`;
+      const mailtoUrl = `mailto:${socialLinks.email}?subject=${encodeURIComponent(
+        formData.subject
+      )}&body=${encodeURIComponent(emailBody)}`;
+
+      window.location.href = mailtoUrl;
+      setStatus('Your email client is opening now.');
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+
+      setTimeout(() => {
+        setStatus(null);
+      }, 6000);
+    }
   };
 
   return (
@@ -278,9 +324,10 @@ export const Contact: React.FC = () => {
                     type="text"
                     id="name"
                     name="name"
+                    disabled={isSubmitting}
                     value={formData.name}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all ${
+                    className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                       errors.name ? 'border-red-500/70 bg-red-500/5' : 'border-border'
                     }`}
                     placeholder="Enter name"
@@ -301,9 +348,10 @@ export const Contact: React.FC = () => {
                     type="email"
                     id="email"
                     name="email"
+                    disabled={isSubmitting}
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all ${
+                    className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                       errors.email ? 'border-red-500/70 bg-red-500/5' : 'border-border'
                     }`}
                     placeholder="Enter email address"
@@ -325,9 +373,10 @@ export const Contact: React.FC = () => {
                   type="text"
                   id="subject"
                   name="subject"
+                  disabled={isSubmitting}
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all ${
+                  className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                     errors.subject ? 'border-red-500/70 bg-red-500/5' : 'border-border'
                   }`}
                   placeholder="Subject of message"
@@ -348,9 +397,10 @@ export const Contact: React.FC = () => {
                   id="message"
                   name="message"
                   rows={5}
+                  disabled={isSubmitting}
                   value={formData.message}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all resize-none ${
+                  className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed ${
                     errors.message ? 'border-red-500/70 bg-red-500/5' : 'border-border'
                   }`}
                   placeholder="Write message details..."
@@ -365,9 +415,10 @@ export const Contact: React.FC = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-3.5 px-6 rounded-lg font-semibold text-slate-950 bg-primary hover:bg-primary/90 hover:glow-primary transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-primary/20 hover:scale-[1.01] duration-300"
+                disabled={isSubmitting}
+                className="w-full py-3.5 px-6 rounded-lg font-semibold text-slate-950 bg-primary hover:bg-primary/90 hover:glow-primary transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-primary/20 hover:scale-[1.01] duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
                 <Send className="h-4 w-4" />
               </button>
 
