@@ -9,17 +9,17 @@ const specializations = [
     description: "Developing modern web apps with React.js, TypeScript, Node.js, Express, and databases like MySQL."
   },
   {
-    icon: <Server className="h-6 w-6 text-accent" />,
+    icon: <Server className="h-6 w-6 text-primary" />,
     title: "Computer Networking",
     description: "Specializing in TCP/IP socket programming, routing protocols, subnets, and robust communication designs."
   },
   {
-    icon: <Cloud className="h-6 w-6 text-sky-400" />,
+    icon: <Cloud className="h-6 w-6 text-primary" />,
     title: "Cloud Systems",
     description: "Building scalable serverless logic using Azure Functions and managing media stores with AWS S3."
   },
   {
-    icon: <ShieldCheck className="h-6 w-6 text-emerald-400" />,
+    icon: <ShieldCheck className="h-6 w-6 text-primary" />,
     title: "Secure Infrastructure",
     description: "Hardening Ubuntu server environments, implementing firewalls (UFW), SSH keys, Fail2Ban, NGINX, and TLS."
   }
@@ -29,9 +29,9 @@ export const About = () => {
   const { bio } = portfolioData.personalInfo;
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-transparent">
+    <section id="about" className="py-24 relative overflow-hidden bg-card/30 border-t border-b border-border">
       {/* Background decoration */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-accent/5 blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Title */}
@@ -50,7 +50,7 @@ export const About = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-16 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-4 rounded-full"
+            className="w-16 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-4 rounded-full"
           />
         </div>
 
@@ -72,7 +72,7 @@ export const About = () => {
               {bio}
             </p>
 
-            <div className="pt-4 border-t border-slate-800 space-y-3">
+            <div className="pt-4 border-t border-border space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="text-muted font-medium">Education Partner</span>
                 <span className="text-white font-semibold">University of Staffordshire (BSc)</span>
@@ -83,8 +83,8 @@ export const About = () => {
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted font-medium">Availability</span>
-                <span className="text-accent font-semibold flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
+                <span className="text-primary font-semibold flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shadow-sm shadow-primary/40" />
                   Open for Internship / Projects
                 </span>
               </div>
@@ -100,12 +100,12 @@ export const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass-card p-6 rounded-xl relative group overflow-hidden"
+                className="glass-card p-6 rounded-lg border-l-2 border-l-border hover:border-l-primary relative group overflow-hidden"
               >
                 {/* Accent glow line */}
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                <div className="mb-4 inline-flex p-3 rounded-lg bg-slate-900 border border-slate-800 group-hover:border-primary/20 transition-colors">
+                <div className="mb-4 inline-flex p-3 rounded-md bg-card border border-border group-hover:border-primary/30 transition-colors">
                   {spec.icon}
                 </div>
                 

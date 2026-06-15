@@ -28,8 +28,8 @@ export const AuroraBackground = () => {
     let animationFrameId: number;
     let blobs: Blob[] = [];
 
-    // Hues: cyan (195), green (140), deep blue (220), violet (260)
-    const baseHues = [195, 140, 220, 260];
+    // Lightness stops for grayscale blobs
+    const baseHues = [40, 50, 60, 70];
 
     const createBlob = (w: number, h: number, hue: number): Blob => {
       // Scale radius relative to the smaller canvas size
@@ -42,10 +42,10 @@ export const AuroraBackground = () => {
         // Slow speed for ambient movement
         vx: (Math.random() - 0.5) * 0.3,
         vy: (Math.random() - 0.5) * 0.3,
-        color: `hsla(${hue}, 75%, 45%, 0.15)`,
-        h: hue,
-        s: 75,
-        l: 45,
+        color: `hsla(0, 0%, ${hue}%, 0.015)`,
+        h: 0,
+        s: 0,
+        l: hue,
         angle: Math.random() * Math.PI * 2,
         speed: (Math.random() * 0.0015) + 0.0005,
       };
@@ -65,7 +65,7 @@ export const AuroraBackground = () => {
       const h = canvas.height;
 
       // Dark space backing
-      ctx.fillStyle = '#050816';
+      ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, w, h);
 
       // Layered radial glows with screen blending
@@ -87,7 +87,7 @@ export const AuroraBackground = () => {
         if (blob.y < -blob.radius || blob.y > h + blob.radius) blob.vy = -blob.vy;
 
         // Interpolated color string
-        blob.color = `hsla(${blob.h}, ${blob.s}%, ${blob.l}%, 0.15)`;
+        blob.color = `hsla(0, 0%, ${blob.l}%, 0.015)`;
 
         // Draw radial gradient
         const gradient = ctx.createRadialGradient(
@@ -100,8 +100,8 @@ export const AuroraBackground = () => {
         );
 
         gradient.addColorStop(0, blob.color);
-        gradient.addColorStop(0.5, `hsla(${blob.h}, ${blob.s}%, ${blob.l}%, 0.06)`);
-        gradient.addColorStop(1, 'rgba(5, 8, 22, 0)');
+        gradient.addColorStop(0.5, `hsla(0, 0%, ${blob.l}%, 0.005)`);
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -119,8 +119,8 @@ export const AuroraBackground = () => {
       const clickY = ((e.clientY - rect.top) / rect.height) * canvas.height;
 
       blobs.forEach((blob) => {
-        // Shift hue on click
-        blob.h = (blob.h + 40) % 360;
+        // Shift lightness on click
+        blob.l = ((blob.l + 10) % 40) + 40;
 
         // Push away from click coordinate
         const dx = blob.x - clickX;

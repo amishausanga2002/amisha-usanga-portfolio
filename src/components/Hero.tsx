@@ -15,7 +15,7 @@ export const Hero: React.FC = () => {
       particleCount: 50,
       spread: 60,
       origin: { y: 0.8 },
-      colors: ['#38BDF8', '#22C55E', '#0EA5E9', '#10B981'],
+      colors: ['#FFFFFF', '#B5B5B5', '#7A7A7A', '#111111'],
       disableForReducedMotion: true
     });
   };
@@ -56,7 +56,7 @@ export const Hero: React.FC = () => {
     let particles: Particle[] = [];
     const mouse = { x: null as number | null, y: null as number | null, radius: 110 };
     let isHeroVisible = true;
-    const isMobile = window.innerWidth <= 768;
+    let isMobile = window.innerWidth <= 768;
 
     class Particle {
       x: number;
@@ -73,8 +73,8 @@ export const Hero: React.FC = () => {
         this.vx = (Math.random() - 0.5) * 0.35;
         this.vy = (Math.random() - 0.5) * 0.35;
         this.size = Math.random() * 2 + 1;
-        // Alternate between primary blue and accent green
-        this.color = Math.random() > 0.5 ? '#38BDF8' : '#22C55E';
+        // Alternate between primary white and secondary grey
+        this.color = Math.random() > 0.5 ? '#FFFFFF' : '#7A7A7A';
       }
 
       update(w: number, h: number) {
@@ -111,6 +111,9 @@ export const Hero: React.FC = () => {
       const w = canvas.width = canvas.offsetWidth;
       const h = canvas.height = canvas.offsetHeight;
       
+      // Update isMobile dynamically on resize
+      isMobile = w <= 768;
+      
       // 2. Reduced particle counts as required
       const particleCount = w > 768 ? 55 : 25;
       particles = [];
@@ -141,7 +144,7 @@ export const Hero: React.FC = () => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
             ctx.lineWidth = 0.7;
             ctx.stroke();
           }
@@ -157,9 +160,9 @@ export const Hero: React.FC = () => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = particles[i].color === '#38BDF8' 
-              ? `rgba(56, 189, 248, ${alpha})`
-              : `rgba(34, 197, 150, ${alpha})`;
+            ctx.strokeStyle = particles[i].color === '#FFFFFF' 
+              ? `rgba(255, 255, 255, ${alpha})`
+              : `rgba(122, 122, 122, ${alpha})`;
             ctx.lineWidth = 0.9;
             ctx.stroke();
           }
@@ -205,10 +208,8 @@ export const Hero: React.FC = () => {
     const parent = containerRef.current;
     if (parent) {
       observer.observe(parent);
-      if (!isMobile) {
-        parent.addEventListener('mousemove', handleMouseMove);
-        parent.addEventListener('mouseleave', handleMouseLeave);
-      }
+      parent.addEventListener('mousemove', handleMouseMove);
+      parent.addEventListener('mouseleave', handleMouseLeave);
     }
 
     const resizeObserver = new ResizeObserver(() => {
@@ -222,7 +223,7 @@ export const Hero: React.FC = () => {
       if (animationFrameIdRef.current) {
         cancelAnimationFrame(animationFrameIdRef.current);
       }
-      if (parent && !isMobile) {
+      if (parent) {
         parent.removeEventListener('mousemove', handleMouseMove);
         parent.removeEventListener('mouseleave', handleMouseLeave);
       }
@@ -255,7 +256,7 @@ export const Hero: React.FC = () => {
 
       {/* Decorative ambient radial glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-secondary/5 blur-[120px] pointer-events-none" />
 
       {/* Hero content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -275,7 +276,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6"
         >
-          Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent drop-shadow-sm">{info.name}</span>
+          Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-secondary drop-shadow-sm">{info.name}</span>
         </motion.h1>
 
         <motion.h2
@@ -305,7 +306,7 @@ export const Hero: React.FC = () => {
         >
           <button
             onClick={handleViewProjects}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-white bg-gradient-to-r from-primary/95 to-primary hover:from-primary hover:to-primary/90 transition-all shadow-md hover:shadow-primary/20 hover:scale-[1.02] cursor-pointer"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-slate-950 bg-primary hover:bg-primary/90 hover:glow-primary shadow-lg shadow-primary/10 hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
           >
             View Projects
             <ArrowRight className="h-4 w-4" />
@@ -315,7 +316,7 @@ export const Hero: React.FC = () => {
             href="/Amisha_Usanga_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-white bg-slate-800 border border-slate-700 hover:bg-slate-700 transition-all hover:scale-[1.02]"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-primary hover:text-white bg-transparent border border-primary/30 hover:border-primary hover:bg-primary/5 hover:scale-[1.02] hover:glow-primary transition-all duration-300"
           >
             Download CV
             <Download className="h-4 w-4" />
@@ -323,7 +324,7 @@ export const Hero: React.FC = () => {
 
           <button
             onClick={handleContactMe}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-slate-300 hover:text-white bg-transparent border border-slate-800 hover:border-slate-650 transition-all hover:scale-[1.02] cursor-pointer"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-muted hover:text-white bg-card border border-border hover:border-muted/30 transition-all hover:scale-[1.02] cursor-pointer"
           >
             Contact Me
             <Mail className="h-4 w-4" />

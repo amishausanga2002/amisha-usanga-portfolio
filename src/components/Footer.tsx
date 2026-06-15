@@ -42,7 +42,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-transparent border-t border-slate-900 py-12 relative overflow-hidden">
+    <footer className="bg-card/30 border-t border-border py-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
         
         {/* Branding & Info */}
@@ -67,7 +67,7 @@ export const Footer = () => {
               href={socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-muted hover:text-white hover:bg-slate-900 border border-transparent hover:border-slate-800 rounded-lg transition-all"
+              className="p-2 text-muted hover:text-primary hover:bg-card border border-transparent hover:border-primary/40 rounded-lg transition-all"
               aria-label="GitHub Profile"
             >
               <GithubIcon className="h-4 w-4" />
@@ -77,7 +77,7 @@ export const Footer = () => {
               href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-muted hover:text-white hover:bg-slate-900 border border-transparent hover:border-slate-800 rounded-lg transition-all"
+              className="p-2 text-muted hover:text-primary hover:bg-card border border-transparent hover:border-primary/40 rounded-lg transition-all"
               aria-label="LinkedIn Profile"
             >
               <LinkedinIcon className="h-4 w-4" />
@@ -86,7 +86,7 @@ export const Footer = () => {
 
           <button
             onClick={scrollToTop}
-            className="p-2 bg-slate-900 border border-slate-800 text-muted hover:text-primary hover:border-primary/20 hover:glow-primary rounded-lg transition-all cursor-pointer"
+            className="p-2 bg-card border border-border text-primary hover:text-white hover:border-primary/20 hover:glow-primary rounded-lg transition-all cursor-pointer"
             aria-label="Scroll to top"
           >
             <ArrowUp className="h-4 w-4" />

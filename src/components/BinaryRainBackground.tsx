@@ -54,8 +54,8 @@ export const BinaryRainBackground = () => {
       const w = canvas.width;
       const h = canvas.height;
 
-      // Clear with dark slate backing
-      ctx.fillStyle = '#050816';
+      // Clear with Carbon Matte Black backing
+      ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, w, h);
 
       ctx.textAlign = 'center';
@@ -94,18 +94,18 @@ export const BinaryRainBackground = () => {
             const glowRatio = (mouse.radius - dist) / mouse.radius;
             const glowOpacity = 0.05 + glowRatio * 0.35; // Bright but not overwhelming
             
-            // Randomly alternate between primary cyan and accent green for glows
+            // Randomly alternate between primary white and secondary grey for glows
             if ((stream.x + i) % 7 === 0) {
-              drawColor = `rgba(34, 197, 94, ${glowOpacity})`; // Green
+              drawColor = `rgba(181, 181, 181, ${glowOpacity})`; // Secondary Light Grey
             } else {
-              drawColor = `rgba(56, 189, 248, ${glowOpacity})`; // Cyan
+              drawColor = `rgba(255, 255, 255, ${glowOpacity})`; // Primary White
             }
             
             // Add font weight & size boost for glowing focus
             ctx.font = `bold ${stream.fontSize + 0.5}px monospace`;
           } else {
             // Muted, very dimmed background slate/indigo
-            drawColor = `rgba(148, 163, 184, ${stream.opacity})`;
+            drawColor = `rgba(122, 122, 122, ${stream.opacity})`;
           }
 
           // Randomly flip a binary digit occasionally

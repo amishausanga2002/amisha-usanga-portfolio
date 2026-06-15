@@ -9,13 +9,13 @@ const getCategoryIcon = (category: string) => {
       return <Terminal className="h-5 w-5 text-primary" />;
     case 'databases and APIs':
     case 'databases and apis':
-      return <Database className="h-5 w-5 text-accent" />;
+      return <Database className="h-5 w-5 text-primary" />;
     case 'cloud and infrastructure':
-      return <Server className="h-5 w-5 text-sky-400" />;
+      return <Server className="h-5 w-5 text-primary" />;
     case 'development concepts':
-      return <Cpu className="h-5 w-5 text-purple-400" />;
+      return <Cpu className="h-5 w-5 text-primary" />;
     case 'professional skills':
-      return <Lightbulb className="h-5 w-5 text-amber-400" />;
+      return <Lightbulb className="h-5 w-5 text-primary" />;
     default:
       return <Lightbulb className="h-5 w-5 text-primary" />;
   }
@@ -28,7 +28,7 @@ export const Skills = () => {
     <section id="skills" className="py-24 relative overflow-hidden bg-transparent">
       {/* Glow shapes */}
       <div className="absolute top-1/4 right-0 w-80 h-80 rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 left-0 w-80 h-80 rounded-full bg-accent/5 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-0 w-80 h-80 rounded-full bg-secondary/5 blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Title */}
@@ -47,7 +47,7 @@ export const Skills = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-16 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-4 rounded-full"
+            className="w-16 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-4 rounded-full"
           />
         </div>
 
@@ -60,10 +60,10 @@ export const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: groupIdx * 0.1 }}
-              className="glass p-6 rounded-xl border border-white/5 hover:border-primary/10 transition-colors"
+              className="glass p-6 rounded-xl border border-border hover:border-primary/30 transition-colors"
             >
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-800/60">
-                <div className="p-2 rounded-lg bg-slate-900 border border-slate-850">
+              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border">
+                <div className="p-2 rounded-lg bg-card border border-border">
                   {getCategoryIcon(group.category)}
                 </div>
                 <h3 className="text-lg font-bold text-white tracking-wide">
@@ -75,17 +75,17 @@ export const Skills = () => {
                 {group.skills.map((skill) => (
                   <div key={skill.name} className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-slate-350 font-medium">{skill.name}</span>
+                      <span className="text-muted font-medium">{skill.name}</span>
                       <span className="text-primary font-semibold text-xs">{skill.level}%</span>
                     </div>
                     {/* Progress track */}
-                    <div className="h-2 w-full bg-slate-900 rounded-full overflow-hidden border border-slate-850">
+                    <div className="h-1.5 w-full bg-bg rounded-full overflow-hidden border border-border">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, ease: 'easeOut', delay: 0.1 }}
-                        className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
+                        className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
                       />
                     </div>
                   </div>

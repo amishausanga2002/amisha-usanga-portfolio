@@ -118,7 +118,7 @@ export const Contact: React.FC = () => {
     confetti({
       particleCount: 40,
       spread: 50,
-      colors: ['#38BDF8', '#22C55E'],
+      colors: ['#00F5D4', '#38BDF8'],
       origin: { y: 0.8 },
       disableForReducedMotion: true
     });
@@ -150,8 +150,8 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-transparent">
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
+    <section id="contact" className="py-24 relative overflow-hidden bg-card/30 border-t border-b border-border">
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-secondary/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Title */}
@@ -170,7 +170,7 @@ export const Contact: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-16 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-4 rounded-full"
+            className="w-16 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-4 rounded-full"
           />
         </div>
 
@@ -195,13 +195,13 @@ export const Contact: React.FC = () => {
               {/* Direct Email */}
               <a
                 href={`mailto:${socialLinks.email}`}
-                className="flex items-center gap-4 p-4 rounded-xl glass-card group border border-white/5"
+                className="flex items-center gap-4 p-4 rounded-xl glass-card group border border-border"
               >
-                <div className="p-3 bg-slate-900 border border-slate-800 text-primary rounded-lg group-hover:bg-primary/5 group-hover:border-primary/30 transition-colors">
+                <div className="p-3 bg-card border border-border text-primary rounded-lg group-hover:bg-primary/5 group-hover:border-primary/30 transition-colors">
                   <Mail className="h-5 w-5 glow-primary" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Email Me</h4>
+                  <h4 className="text-xs font-semibold text-muted uppercase tracking-wider">Email Me</h4>
                   <p className="text-sm font-semibold text-white mt-0.5 group-hover:text-primary transition-colors">
                     {socialLinks.email}
                   </p>
@@ -213,14 +213,14 @@ export const Contact: React.FC = () => {
                 href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl glass-card group border border-white/5"
+                className="flex items-center gap-4 p-4 rounded-xl glass-card group border border-border"
               >
-                <div className="p-3 bg-slate-900 border border-slate-800 text-sky-400 rounded-lg group-hover:bg-sky-500/5 group-hover:border-sky-450 transition-colors">
+                <div className="p-3 bg-card border border-border text-primary rounded-lg group-hover:bg-primary/5 group-hover:border-primary/30 transition-colors">
                   <LinkedinIcon className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">LinkedIn</h4>
-                  <p className="text-sm font-semibold text-white mt-0.5 group-hover:text-sky-400 transition-colors">
+                  <h4 className="text-xs font-semibold text-muted uppercase tracking-wider">LinkedIn</h4>
+                  <p className="text-sm font-semibold text-white mt-0.5 group-hover:text-primary transition-colors">
                     Amisha Usanga
                   </p>
                 </div>
@@ -231,13 +231,13 @@ export const Contact: React.FC = () => {
                 href={socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl glass-card group border border-white/5"
+                className="flex items-center gap-4 p-4 rounded-xl glass-card group border border-border"
               >
-                <div className="p-3 bg-slate-900 border border-slate-800 text-slate-200 rounded-lg group-hover:bg-white/5 group-hover:border-slate-500 transition-colors">
+                <div className="p-3 bg-card border border-border text-primary rounded-lg group-hover:bg-primary/5 group-hover:border-primary/30 transition-colors">
                   <GithubIcon className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">GitHub</h4>
+                  <h4 className="text-xs font-semibold text-muted uppercase tracking-wider">GitHub</h4>
                   <p className="text-sm font-semibold text-white mt-0.5 group-hover:text-primary transition-colors">
                     {socialLinks.github.replace('https://', '')}
                   </p>
@@ -245,12 +245,12 @@ export const Contact: React.FC = () => {
               </a>
 
               {/* Location */}
-              <div className="flex items-center gap-4 p-4 rounded-xl glass-card border border-white/5">
-                <div className="p-3 bg-slate-900 border border-slate-800 text-accent rounded-lg">
-                  <MapPin className="h-5 w-5 glow-accent" />
+              <div className="flex items-center gap-4 p-4 rounded-xl glass-card border border-border">
+                <div className="p-3 bg-card border border-border text-primary rounded-lg">
+                  <MapPin className="h-5 w-5 glow-primary" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Location</h4>
+                  <h4 className="text-xs font-semibold text-muted uppercase tracking-wider">Location</h4>
                   <p className="text-sm font-semibold text-white mt-0.5">
                     {socialLinks.location}
                   </p>
@@ -267,11 +267,11 @@ export const Contact: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="lg:col-span-7"
           >
-            <form onSubmit={handleSubmit} className="glass p-8 rounded-2xl border border-white/5 space-y-5">
+            <form onSubmit={handleSubmit} className="glass p-8 rounded-2xl border border-border space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {/* Name */}
                 <div className="space-y-1.5">
-                  <label htmlFor="name" className="text-xs font-semibold text-slate-350 tracking-wide uppercase">
+                  <label htmlFor="name" className="text-xs font-semibold text-muted tracking-wide uppercase">
                     Your Name
                   </label>
                   <input
@@ -280,8 +280,8 @@ export const Contact: React.FC = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all ${
-                      errors.name ? 'border-red-500/70 bg-red-500/5' : 'border-slate-800'
+                    className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all ${
+                      errors.name ? 'border-red-500/70 bg-red-500/5' : 'border-border'
                     }`}
                     placeholder="Enter name"
                   />
@@ -294,7 +294,7 @@ export const Contact: React.FC = () => {
 
                 {/* Email */}
                 <div className="space-y-1.5">
-                  <label htmlFor="email" className="text-xs font-semibold text-slate-350 tracking-wide uppercase">
+                  <label htmlFor="email" className="text-xs font-semibold text-muted tracking-wide uppercase">
                     Your Email
                   </label>
                   <input
@@ -303,8 +303,8 @@ export const Contact: React.FC = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all ${
-                      errors.email ? 'border-red-500/70 bg-red-500/5' : 'border-slate-800'
+                    className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all ${
+                      errors.email ? 'border-red-500/70 bg-red-500/5' : 'border-border'
                     }`}
                     placeholder="Enter email address"
                   />
@@ -318,7 +318,7 @@ export const Contact: React.FC = () => {
 
               {/* Subject */}
               <div className="space-y-1.5">
-                <label htmlFor="subject" className="text-xs font-semibold text-slate-350 tracking-wide uppercase">
+                <label htmlFor="subject" className="text-xs font-semibold text-muted tracking-wide uppercase">
                   Subject
                 </label>
                 <input
@@ -327,8 +327,8 @@ export const Contact: React.FC = () => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all ${
-                    errors.subject ? 'border-red-500/70 bg-red-500/5' : 'border-slate-800'
+                  className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all ${
+                    errors.subject ? 'border-red-500/70 bg-red-500/5' : 'border-border'
                   }`}
                   placeholder="Subject of message"
                 />
@@ -341,7 +341,7 @@ export const Contact: React.FC = () => {
 
               {/* Message */}
               <div className="space-y-1.5">
-                <label htmlFor="message" className="text-xs font-semibold text-slate-350 tracking-wide uppercase">
+                <label htmlFor="message" className="text-xs font-semibold text-muted tracking-wide uppercase">
                   Message
                 </label>
                 <textarea
@@ -350,8 +350,8 @@ export const Contact: React.FC = () => {
                   rows={5}
                   value={formData.message}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all resize-none ${
-                    errors.message ? 'border-red-500/70 bg-red-500/5' : 'border-slate-800'
+                  className={`w-full px-4 py-3 rounded-lg bg-soft-card border text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all resize-none ${
+                    errors.message ? 'border-red-500/70 bg-red-500/5' : 'border-border'
                   }`}
                   placeholder="Write message details..."
                 />
@@ -365,7 +365,7 @@ export const Contact: React.FC = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-3.5 px-6 rounded-lg font-semibold text-white bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-primary/10"
+                className="w-full py-3.5 px-6 rounded-lg font-semibold text-slate-950 bg-primary hover:bg-primary/90 hover:glow-primary transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-primary/20 hover:scale-[1.01] duration-300"
               >
                 Send Message
                 <Send className="h-4 w-4" />
@@ -378,7 +378,7 @@ export const Contact: React.FC = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="flex items-center gap-2 p-3 bg-accent/10 border border-accent/30 rounded-lg text-accent text-xs font-semibold"
+                    className="flex items-center gap-2 p-3 bg-secondary/10 border border-secondary/30 rounded-lg text-secondary text-xs font-semibold"
                   >
                     <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
                     <span>{status}</span>

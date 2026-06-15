@@ -26,7 +26,7 @@ export const Certifications = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-16 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-4 rounded-full"
+            className="w-16 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-4 rounded-full"
           />
         </div>
 
@@ -39,19 +39,19 @@ export const Certifications = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="glass-card p-6 rounded-xl flex items-start gap-4 border border-white/5 group hover:border-primary/20"
+              className="glass-card p-6 rounded-xl flex items-start gap-4 border border-border group hover:border-primary/30"
             >
               {/* Icon */}
-              <div className="p-3 bg-slate-900 border border-slate-800 rounded-lg text-primary group-hover:bg-primary/5 group-hover:border-primary/30 transition-colors">
+              <div className="p-3 bg-card border border-border rounded-lg text-primary group-hover:bg-primary/5 group-hover:border-primary/30 transition-colors">
                 <Award className="h-6 w-6 glow-primary" />
               </div>
 
               {/* Info */}
               <div className="flex-1 min-w-0">
-                <h3 className="text-base font-bold text-white leading-snug group-hover:text-primary transition-colors truncate">
+                <h3 className="text-base font-bold text-white leading-snug group-hover:text-primary transition-colors">
                   {cert.title}
                 </h3>
-                <p className="text-sm font-semibold text-accent mt-1">
+                <p className="text-sm font-semibold text-secondary mt-1">
                   {cert.issuer}
                 </p>
                 <div className="flex items-center gap-1.5 text-xs text-muted mt-2.5">
@@ -64,7 +64,7 @@ export const Certifications = () => {
                     href={cert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-white mt-4 transition-colors"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-secondary hover:text-primary hover:glow-primary mt-4 transition-colors"
                   >
                     Verify Credential
                     <ExternalLink className="h-3 w-3" />

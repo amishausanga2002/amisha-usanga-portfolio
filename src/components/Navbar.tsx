@@ -82,13 +82,13 @@ export const Navbar = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <Code className="h-6 w-6 text-primary glow-primary" />
-            <span className="text-xl font-bold tracking-tight text-white">
+            <span className="text-xl font-bold tracking-tight text-white font-mono">
               Amisha<span className="text-primary">.dev</span>
             </span>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center md:space-x-5 lg:space-x-8">
             {navItems.map((item, idx) => {
               const isActive = activeSection === item.href.replace('#', '');
               return (
@@ -99,7 +99,7 @@ export const Navbar = () => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className={`relative text-sm font-medium tracking-wide transition-colors ${
+                  className={`relative md:text-xs lg:text-sm font-medium tracking-wide transition-colors ${
                     isActive ? 'text-primary' : 'text-muted hover:text-text'
                   }`}
                 >
@@ -137,7 +137,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden glass border-t border-white/5 bg-bg/95"
+            className="md:hidden glass border-t border-white/5 bg-card/95"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item) => {

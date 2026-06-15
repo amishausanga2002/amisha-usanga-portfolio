@@ -36,7 +36,7 @@ export const Projects = () => {
     <section id="projects" className="py-24 relative bg-transparent">
       {/* Visual backdrop */}
       <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-secondary/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Title */}
@@ -58,7 +58,7 @@ export const Projects = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-16 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-4 rounded-full"
+            className="w-16 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-4 rounded-full"
           />
         </div>
 
@@ -77,7 +77,7 @@ export const Projects = () => {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <span className="text-3xl p-1 bg-slate-900/60 rounded-lg border border-slate-800/80">
+                    <span className="text-3xl p-1 bg-soft-card rounded-lg border border-border">
                       {getProjectIcon(project.title)}
                     </span>
                     <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors duration-300">
@@ -87,7 +87,7 @@ export const Projects = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-slate-300 mb-5 leading-relaxed">
+                <p className="text-sm text-muted mb-5 leading-relaxed">
                   {project.description}
                 </p>
 
@@ -96,7 +96,7 @@ export const Projects = () => {
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-2 py-0.5 rounded text-[11px] font-medium tracking-wide bg-slate-900 text-slate-300 border border-slate-800"
+                      className="px-2 py-0.5 rounded text-[11px] font-medium tracking-wide bg-bg text-secondary border border-border"
                     >
                       {t}
                     </span>
@@ -105,10 +105,10 @@ export const Projects = () => {
 
                 {/* Features Checklist */}
                 <div className="mb-6 space-y-2">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Key Accomplishments:</h4>
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-muted mb-2">Key Accomplishments:</h4>
                   {project.features.map((feature, fIdx) => (
                     <div key={fIdx} className="flex items-start gap-2.5 text-xs text-muted">
-                      <span className="mt-0.5 text-accent flex-shrink-0">
+                      <span className="mt-0.5 text-primary flex-shrink-0">
                         <Check className="h-3.5 w-3.5" />
                       </span>
                       <span className="leading-relaxed">{feature}</span>
@@ -118,14 +118,14 @@ export const Projects = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-800/60 mt-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-border mt-auto w-full">
                 {/* GitHub Link */}
                 {project.githubUrl ? (
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 min-w-[100px] flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-slate-900 border border-slate-800 hover:border-slate-700 hover:bg-slate-800/70 transition-all rounded"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-card border border-border hover:border-primary/45 hover:text-primary transition-all rounded"
                   >
                     <GithubIcon className="h-3.5 w-3.5" />
                     GitHub
@@ -133,7 +133,7 @@ export const Projects = () => {
                 ) : (
                   <button
                     disabled
-                    className="flex-1 min-w-[100px] flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-650 bg-slate-950/20 border border-slate-950 rounded cursor-not-allowed"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-muted/30 bg-card/20 border border-border/40 rounded cursor-not-allowed"
                     title="Codebase private or coming soon"
                   >
                     <GithubIcon className="h-3.5 w-3.5" />
@@ -147,7 +147,7 @@ export const Projects = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 min-w-[100px] flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-primary/20 hover:bg-primary/30 border border-primary/30 hover:border-primary/50 transition-all rounded"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-950 bg-primary hover:bg-primary/90 hover:glow-primary transition-all rounded"
                   >
                     <ExternalLink className="h-3.5 w-3.5" />
                     Demo Soon
@@ -155,7 +155,7 @@ export const Projects = () => {
                 ) : (
                   <button
                     disabled
-                    className="flex-1 min-w-[100px] flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-500 bg-slate-950/20 border border-slate-900 rounded cursor-not-allowed"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-muted/30 bg-card/20 border border-border/40 rounded cursor-not-allowed"
                   >
                     <AlertCircle className="h-3.5 w-3.5" />
                     Demo Soon
@@ -166,7 +166,7 @@ export const Projects = () => {
                 {project.caseStudyUrl ? (
                   <a
                     href={project.caseStudyUrl}
-                    className="flex-1 min-w-[100px] flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 transition-all rounded"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-card border border-border hover:border-primary/45 hover:text-primary transition-all rounded"
                   >
                     <BookOpen className="h-3.5 w-3.5" />
                     Case Study
@@ -174,7 +174,7 @@ export const Projects = () => {
                 ) : (
                   <button
                     disabled
-                    className="flex-1 min-w-[100px] flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-500 bg-slate-950/20 border border-slate-900 rounded cursor-not-allowed"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-muted/30 bg-card/20 border border-border/40 rounded cursor-not-allowed"
                   >
                     <BookOpen className="h-3.5 w-3.5" />
                     Study Soon
